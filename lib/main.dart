@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uni_flutter/src/pages/SplashScreen.dart';
+import 'package:uni_flutter/src/pages/HomePage.dart';
 
-void main() {
+Future<void> main() async {
+  bool tempData = await fetchLoginData();
+
   runApp(const MyApp());
 }
 
@@ -10,6 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SplashScreen();
+    return const HomePage();
   }
+}
+
+Future<bool> fetchLoginData() async {
+  bool data = false;
+
+  await Future.delayed(const Duration(seconds: 1), () {
+    data = true;
+  });
+  return data;
 }
