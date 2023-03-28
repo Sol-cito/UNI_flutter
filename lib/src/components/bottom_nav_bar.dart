@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uni_flutter/src/pages/post_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -8,11 +9,25 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
+  int selectedIndex = 0;
+
+  void _onItemTap(int index) {
+    setState(() {
+      if (index == 2) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const PostPage()));
+        return;
+      }
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       selectedItemColor: Colors.black,
       type: BottomNavigationBarType.fixed,
+      currentIndex: selectedIndex,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.work), label: "Company"),
@@ -20,8 +35,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         BottomNavigationBarItem(
             icon: Icon(Icons.notifications), label: "Notification"),
         BottomNavigationBarItem(icon: Icon(Icons.man), label: "Profile"),
-        // BottomNavigationBarItem(icon: Icon(Icons.home), label: "홈")
       ],
+      onTap: _onItemTap,
     );
   }
 }
