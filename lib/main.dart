@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:uni_flutter/src/pages/HomePage.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:uni_flutter/src/pages/home_page.dart';
 
 Future<void> main() async {
-  bool tempData = await fetchLoginData();
+  await dotenv.load(fileName: ".env");
 
   runApp(const MyApp());
 }
@@ -12,15 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("start login logic"); // TO-DO : login logic location.
     return const HomePage();
   }
-}
-
-Future<bool> fetchLoginData() async {
-  bool data = false;
-
-  await Future.delayed(const Duration(seconds: 1), () {
-    data = true;
-  });
-  return data;
 }
