@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uni_flutter/src/components/HomeAppBar.dart';
+import 'package:uni_flutter/src/components/Test.dart';
+import 'package:uni_flutter/src/components/home_app_bar.dart';
 
-import '../components/BottomNavBar.dart';
+import '../components/bottom_nav_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,7 +14,7 @@ class HomePage extends StatelessWidget {
     return const MaterialApp(
       home: Scaffold(
           appBar: HomeAppBar(),
-          body: Text("Test"),
+          body: Test(),
           bottomNavigationBar: BottomNavBar()),
     );
   }

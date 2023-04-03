@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uni_flutter/src/components/SearchField.dart';
+import 'package:uni_flutter/src/components/search_field.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String appImageDir = "assets/un_flag.png";
