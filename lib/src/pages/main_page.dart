@@ -4,8 +4,8 @@ import 'package:uni_flutter/src/components/home_app_bar.dart';
 
 import '../components/bottom_nav_bar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class MainPage extends StatelessWidget {
+  const MainPage({super.key});
 
   final String appImageDir = "assets/un_flag.png";
 

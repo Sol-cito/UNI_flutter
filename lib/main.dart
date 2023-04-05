@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:uni_flutter/src/pages/login_page.dart';
+import 'package:uni_flutter/src/pages/init_page.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      home: const LoginPage(),
+      home: const InitPage(),
     );
   }
 }

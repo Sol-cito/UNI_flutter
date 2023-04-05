@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uni_flutter/src/components/common_app_bar.dart';
-import 'package:uni_flutter/src/pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,36 +14,11 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userid = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
-  static const _flutterSecureStorage = FlutterSecureStorage();
-
-  void _divergeToPage(String? loginInfo) {
-    setState(() {
-      if (loginInfo != null) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _getFlutterSecureStorageInfo();
-    });
-  }
-
   @override
   void dispose() {
     super.dispose();
     _userid.dispose();
     _password.dispose();
-  }
-
-  _getFlutterSecureStorageInfo() async {
-    String? loginInfo = await _flutterSecureStorage.read(key: 'login');
-    _divergeToPage(loginInfo);
   }
 
   InputDecoration _getInputDecoration(String placeholder) {
