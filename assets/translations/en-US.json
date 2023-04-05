@@ -1,0 +1,8 @@
+{
+  "hello": "hello",
+  "login": {
+    "login_title": "UNI Login",
+    "Email": "Email",
+    "Password": "Password"
+  }
+}
