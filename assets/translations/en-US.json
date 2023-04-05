@@ -2,7 +2,10 @@
   "hello": "hello",
   "login": {
     "login_title": "UNI Login",
+    "login_content": "Login and enjoy interacting!",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "register_content": "New to UNI?",
+    "create_account": "Create an account"
   }
 }

@@ -10,10 +10,12 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      toolbarHeight: 100,
+      elevation: 0.0,
       centerTitle: true,
       title: Text(
         title,
-        style: const TextStyle(fontSize: 30),
+        style: const TextStyle(fontSize: 25),
       ),
       leading: showLeading ? const Icon(Icons.arrow_back) : null,
     );
