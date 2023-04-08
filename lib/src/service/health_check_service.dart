@@ -1,5 +1,9 @@
 import 'package:uni_flutter/src/service/base_service.dart';
 
-Future<String> healthCheckRequest() async {
-  return await baseRequest("/health");
+class HealthCheckService {
+  final BaseService _baseService = BaseService();
+
+  Future<String> healthCheckRequest() async {
+    return await _baseService.baseRequest("/health");
+  }
 }
