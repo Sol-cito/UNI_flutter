@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:uni_flutter/src/pages/login_page.dart';
 import 'package:uni_flutter/src/pages/main_page.dart';
+
+import '../service/storage_service.dart';
 
 class InitPage extends StatefulWidget {
   const InitPage({Key? key}) : super(key: key);
@@ -11,21 +12,21 @@ class InitPage extends StatefulWidget {
 }
 
 class _InitPageState extends State<InitPage> {
-  static const _flutterSecureStorage = FlutterSecureStorage();
-
   Widget nextPage = const LoginPage();
+  StorageService storageService = StorageService();
 
-  void _setNextPage(String? loginInfo) {
+  void _setNextPage() {
     setState(() {
-      if (loginInfo != null) {
-        nextPage = const MainPage();
-      }
+      nextPage = const MainPage();
     });
   }
 
-  _getFlutterSecureStorageInfo() async {
-    String? loginInfo = await _flutterSecureStorage.read(key: 'login');
-    _setNextPage(loginInfo);
+  _getNextPage() async {
+    bool isAlreadyLoggedIn =
+        await storageService.checkIfAlreadyLoggedInByStorage();
+    if (isAlreadyLoggedIn) {
+      _setNextPage();
+    }
   }
 
   @override
@@ -33,7 +34,7 @@ class _InitPageState extends State<InitPage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _getFlutterSecureStorageInfo();
+      _getNextPage();
     });
   }
 
