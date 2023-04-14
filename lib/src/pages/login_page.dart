@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _verifyEmail() {
-    if (!commonService.verifyEmailRegex(_emailController.text)) {
+    if (!commonService.validateEmailByRegex(_emailController.text)) {
       setState(() {
         _isEmailInvalid = true;
       });
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _verifyPassword() {
-    if (!commonService.verifyPasswordRegex(_passwordController.text)) {
+    if (!commonService.validatePasswordByRegex(_passwordController.text)) {
       setState(() {
         _isPasswordInvalid = true;
       });
