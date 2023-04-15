@@ -9,16 +9,17 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int selectedIndex = 0;
+  int _selectedIndex = 0;
+  final int _postBtnIndex = 2;
 
   void _onItemTap(int index) {
     setState(() {
-      if (index == 2) {
+      if (index == _postBtnIndex) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const PostPage()));
         return;
       }
-      selectedIndex = index;
+      _selectedIndex = index;
     });
   }
 
@@ -27,7 +28,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
       selectedItemColor: Colors.black,
       type: BottomNavigationBarType.fixed,
-      currentIndex: selectedIndex,
+      currentIndex: _selectedIndex,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.work), label: "Company"),
