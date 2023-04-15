@@ -20,9 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   bool _isEmailInvalid = false;
   final String _emailErrorText = "email error text";
 
-  bool _isPasswordInvalid = false;
-  final String _passwordErrorText = "password error text";
-
   @override
   void dispose() {
     super.dispose();
@@ -42,20 +39,8 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _verifyPassword() {
-    if (!commonService.validatePasswordByRegex(_passwordController.text)) {
-      setState(() {
-        _isPasswordInvalid = true;
-      });
-    } else {
-      setState(() {
-        _isPasswordInvalid = false;
-      });
-    }
-  }
-
   void _onPressRegister() {
-    if (_isEmailInvalid || _isPasswordInvalid) {
+    if (_isEmailInvalid) {
       Fluttertoast.showToast(msg: "입력값을 확인해주세요.");
       return;
     }
@@ -96,14 +81,12 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                 margin: const EdgeInsets.all(15),
                 child: Focus(
-                    onFocusChange: (value) => {if (!value) _verifyPassword()},
                     child: CustTextField(
-                      textEditingController: _passwordController,
-                      isInputInvalid: _isPasswordInvalid,
-                      errorText: _passwordErrorText,
-                      hintText: passwordHintText,
-                      isObscure: true,
-                    )),
+                  textEditingController: _passwordController,
+                  maxLength: 15,
+                  hintText: passwordHintText,
+                  isObscure: true,
+                )),
               )
             ]),
           )),
