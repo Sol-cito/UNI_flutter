@@ -6,15 +6,17 @@ class CustTextField extends StatefulWidget {
   final bool? isInputInvalid;
   final String? errorText;
   final bool? isObscure;
+  final int? maxLength;
 
-  const CustTextField({
-    Key? key,
-    required this.textEditingController,
-    this.hintText,
-    this.isInputInvalid,
-    this.errorText,
-    this.isObscure,
-  }) : super(key: key);
+  const CustTextField(
+      {Key? key,
+      required this.textEditingController,
+      this.hintText,
+      this.isInputInvalid,
+      this.errorText,
+      this.isObscure,
+      this.maxLength})
+      : super(key: key);
 
   String? _getErrorText() {
     if (isInputInvalid != null &&
@@ -35,6 +37,7 @@ class _CustTextFieldState extends State<CustTextField> {
   Widget build(BuildContext context) {
     return TextField(
         cursorColor: Colors.black,
+        maxLength: widget.maxLength,
         controller: widget.textEditingController,
         obscureText: widget.isObscure == null ? false : widget.isObscure!,
         decoration: InputDecoration(

@@ -8,7 +8,7 @@ class CommonService {
   bool validatePasswordByRegex(String passwordCandidate) {
     // Minimum 1 Uppercase, 1 lowercase, 1 numeric, 1 special char
     return RegExp(
-            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,12}$')
+            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,15}$')
         .hasMatch(passwordCandidate);
   }
 }
