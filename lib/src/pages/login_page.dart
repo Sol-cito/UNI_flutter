@@ -18,7 +18,6 @@ class _LoginPageState extends State<LoginPage> {
   final commonService = CommonService();
 
   bool _isEmailInvalid = false;
-  final String _emailErrorText = "email error text";
 
   @override
   void dispose() {
@@ -75,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: CustTextField(
                         textEditingController: _emailController,
                         isInputInvalid: _isEmailInvalid,
-                        errorText: _emailErrorText,
+                        errorText: "validation".tr(gender: "invalid_email"),
                         hintText: emailHintText,
                       ))),
               Container(
