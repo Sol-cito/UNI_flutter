@@ -26,6 +26,14 @@ class _LoginPageState extends State<LoginPage> {
     _passwordController.dispose();
   }
 
+  void _onChangeEmail(String input) {
+    if (commonService.validateEmailByRegex(_emailController.text)) {
+      setState(() {
+        _isEmailInvalid = false;
+      });
+    }
+  }
+
   void _verifyEmail() {
     if (!commonService.validateEmailByRegex(_emailController.text)) {
       setState(() {
@@ -39,12 +47,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onPressRegister() {
+    Fluttertoast.showToast(msg: "가입 gogo!!");
+  }
+
+  void _onPressLogin() {
     if (_isEmailInvalid) {
       Fluttertoast.showToast(msg: "입력값을 확인해주세요.");
       return;
     }
-    // TO-DO
-    Fluttertoast.showToast(msg: "가입 gogo!!");
   }
 
   @override
@@ -72,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Focus(
                       onFocusChange: (value) => {if (!value) _verifyEmail()},
                       child: CustTextField(
+                        onChange: _onChangeEmail,
                         textEditingController: _emailController,
                         isInputInvalid: _isEmailInvalid,
                         errorText: "validation".tr(gender: "invalid_email"),
@@ -86,6 +97,21 @@ class _LoginPageState extends State<LoginPage> {
                   hintText: passwordHintText,
                   isObscure: true,
                 )),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: SizedBox(
+                    width: double.maxFinite,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black),
+                      onPressed: () {},
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    )),
               )
             ]),
           )),

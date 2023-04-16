@@ -42,42 +42,70 @@ void main() {
       expect(passwordTextField, findsOneWidget);
     });
 
-    testWidgets(
-        "test if email error message doesn't appear when input is valid",
-        (widgetTester) async {
-      await widgetTester.pumpWidget(const LoginPage());
+    group("Email field test", () {
+      testWidgets(
+          "test if email error message doesn't appear when input is valid",
+          (widgetTester) async {
+        await widgetTester.pumpWidget(const LoginPage());
 
-      final emailTextField = find.byType(TextField).first;
-      final passwordTextField = find.byType(TextField).last;
+        final emailTextField = find.byType(TextField).first;
+        final passwordTextField = find.byType(TextField).last;
 
-      await widgetTester.enterText(emailTextField, "valid@valid.com");
-      await widgetTester.tap(passwordTextField);
-      await widgetTester.pumpAndSettle();
+        await widgetTester.enterText(emailTextField, "valid@valid.com");
+        await widgetTester.tap(passwordTextField);
+        await widgetTester.pumpAndSettle();
 
-      final test = find.byWidgetPredicate((widget) =>
-          widget is TextField && widget.decoration?.errorText != null);
+        final test = find.byWidgetPredicate((widget) =>
+            widget is TextField && widget.decoration?.errorText != null);
 
-      expect(test, findsNothing);
-    });
+        expect(test, findsNothing);
+      });
 
-    testWidgets("test if email error message appears when input is invalid",
-        (widgetTester) async {
-      await widgetTester.pumpWidget(const LoginPage());
+      testWidgets("test if email error message appears when input is invalid",
+          (widgetTester) async {
+        await widgetTester.pumpWidget(const LoginPage());
 
-      final emailTextField = find.byType(TextField).first;
-      final passwordTextField = find.byType(TextField).last;
+        final emailTextField = find.byType(TextField).first;
+        final passwordTextField = find.byType(TextField).last;
 
-      await widgetTester.enterText(emailTextField, "invalid email");
-      await widgetTester.tap(passwordTextField);
-      await widgetTester.pumpAndSettle();
+        await widgetTester.enterText(emailTextField, "invalid email");
+        await widgetTester.tap(passwordTextField);
+        await widgetTester.pumpAndSettle();
 
-      final test = find.byWidgetPredicate((widget) =>
-          widget is TextField &&
-          widget.decoration?.errorText != null &&
-          widget.decoration?.errorText ==
-              "validation".tr(gender: "invalid_email"));
+        final errorTextMessage = find.byWidgetPredicate((widget) =>
+            widget is TextField &&
+            widget.decoration?.errorText != null &&
+            widget.decoration?.errorText ==
+                "validation".tr(gender: "invalid_email"));
 
-      expect(test, findsOneWidget);
+        expect(errorTextMessage, findsOneWidget);
+      });
+
+      testWidgets(
+          "test if email error message disappears when invalid email gets corrected",
+          (widgetTester) async {
+        await widgetTester.pumpWidget(const LoginPage());
+
+        final emailTextField = find.byType(TextField).first;
+        final passwordTextField = find.byType(TextField).last;
+
+        await widgetTester.enterText(emailTextField, "invalid email");
+        await widgetTester.tap(passwordTextField);
+        await widgetTester.pumpAndSettle();
+
+        final errorTextMessage = find.byWidgetPredicate((widget) =>
+            widget is TextField &&
+            widget.decoration?.errorText != null &&
+            widget.decoration?.errorText ==
+                "validation".tr(gender: "invalid_email"));
+
+        expect(errorTextMessage, findsOneWidget);
+
+        await widgetTester.enterText(emailTextField, "validemail@email.com");
+        await widgetTester.pumpAndSettle();
+
+        expect(errorTextMessage, findsNothing);
+      });
     });
 
     testWidgets("check register text button attributes", (widgetTester) async {
