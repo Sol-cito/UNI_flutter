@@ -6,9 +6,11 @@
     "email": "Email",
     "password": "Password",
     "register_content": "New to UNI?",
-    "create_account": "Create an account"
+    "create_account": "Create an account",
+    "login_btn": "Log in"
   },
   "validation": {
-    "invalid_email": "Invalid email address"
+    "invalid_email": "Invalid email address",
+    "empty_password": "Password is empty"
   }
 }
