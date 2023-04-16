@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uni_flutter/main.dart';
 
 void main() {
-  testWidgets("check MyApp widget initialization", (tester) async {
+  testWidgets("Check MyApp widget initialization", (tester) async {
     final locales = [const Locale('en', 'US')];
 
     SharedPreferences.setMockInitialValues({"locale": "yes"});

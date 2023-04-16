@@ -18,8 +18,8 @@ void main() {
     storageService = StorageService();
   });
 
-  group("flutterSecureStorage test", () {
-    test("if storage contains login value, return true", () async {
+  group("FlutterSecureStorage test", () {
+    test("If storage contains login value, return true", () async {
       FlutterSecureStorage.setMockInitialValues({"login": "loggedIn"});
 
       when(() => mockFlutterSecureStorage.read(key: inputKey))
@@ -29,7 +29,7 @@ void main() {
       expect(isLoggedIn, true);
     });
 
-    test("if storage doesn't contain login value, return false", () async {
+    test("If storage doesn't contain login value, return false", () async {
       FlutterSecureStorage.setMockInitialValues({});
 
       when(() => mockFlutterSecureStorage.read(key: inputKey))
